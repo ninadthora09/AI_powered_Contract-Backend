@@ -20,7 +20,7 @@ export const analyzeContract = async (req, res) => {
 
     if (!text || text.trim().length === 0) {
       try {
-        text = await extractTextFromPDF(contract.filePath);
+        text = await extractTextFromPDF(contract.fileData);
       } catch (err) {
         console.error("PDF EXTRACTION FAILED:", err.message);
         return res.status(500).json({
@@ -42,7 +42,7 @@ export const analyzeContract = async (req, res) => {
     const combinedFlags = [...flags, ...aiDetectedFlags];
 
     // 3️⃣ AI explanation layer (Bytez)
-    const aiResult = await explainRiskWithAI({ flags });
+    const aiResult = await explainRiskWithAI({ flags: combinedFlags });
 
     // 4️⃣ Save everything
     // 4️⃣ Save everything (SAFE – NO VERSION ERROR)

@@ -1,13 +1,10 @@
-import textract from "textract";
+import pdfParse from "pdf-parse";
 
-export const extractTextFromPDF = (filePath) => {
-  return new Promise((resolve, reject) => {
-    textract.fromFileWithPath(filePath, (error, text) => {
-      if (error) {
-        reject(error);
-      } else {
-        resolve(text);
-      }
-    });
-  });
+export const extractTextFromPDF = async (fileBuffer) => {
+  try {
+    const data = await pdfParse(fileBuffer);
+    return data.text;
+  } catch (error) {
+    throw new Error("PDF parsing failed");
+  }
 };
