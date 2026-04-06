@@ -1,4 +1,7 @@
-import pdf from "pdf-parse/lib/pdf-parse.js";
+import { createRequire } from "module";
+
+const require = createRequire(import.meta.url);
+const pdf = require("pdf-parse");
 
 export const extractTextFromPDF = async (fileBuffer) => {
   try {
