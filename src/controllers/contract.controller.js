@@ -40,15 +40,23 @@ const getRiskLevelFromScore = (score) => {
    1️⃣ Upload Contract
 ========================= */
 export const uploadContract = async (req, res) => {
-  try {
-    if (!req.file) {
-      return res.status(400).json({ message: "No file uploaded" });
-    }
+  console.log("FILE RECEIVED:", req.file);
 
+  if (!req.file) {
+    return res.status(400).json({ message: "No file uploaded" });
+  }
+
+  try {
     const contract = await Contract.create({
-      user: req.user._id, // 🔑 link owner
+      user: req.user._id,
       fileName: req.file.originalname,
-      filePath: req.file.path,
+
+      // ❌ REMOVE THIS
+      // filePath: path.resolve(req.file.path),
+
+      // ✅ ADD THIS
+      fileData: req.file.buffer, // store file in DB (temporary solution)
+
       status: "uploaded",
     });
 

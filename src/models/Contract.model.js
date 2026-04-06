@@ -14,8 +14,8 @@ const contractSchema = new mongoose.Schema(
       required: true,
     },
 
-    filePath: {
-      type: String,
+    fileData: {
+      type: Buffer,
       required: true,
     },
 
@@ -47,7 +47,7 @@ const contractSchema = new mongoose.Schema(
   },
   {
     timestamps: true,
-  }
+  },
 );
 
 const Contract = mongoose.model("Contract", contractSchema);
