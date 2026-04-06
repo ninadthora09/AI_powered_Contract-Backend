@@ -14,8 +14,8 @@
     "jsonwebtoken": "^9.0.3",
     "mongoose": "^9.1.5",
     "multer": "^2.0.2",
-    "openai": "^6.16.0",
-    "pdf-parse": "^2.4.5",
+    "groq-sdk": "^0.9.0",
+    "pdf-parse": "^1.1.1",
     "textract": "^2.5.0"
   },
   "devDependencies": {
