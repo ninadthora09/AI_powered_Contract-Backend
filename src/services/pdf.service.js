@@ -5,7 +5,7 @@ const pdf = require("pdf-parse");
 
 export const extractTextFromPDF = async (fileBuffer) => {
   try {
-    const data = await pdf(fileBuffer);
+    const data = await pdf(fileBuffer); // ✅ NOW pdf is a function
     return data.text;
   } catch (error) {
     console.error("PDF PARSE ERROR:", error);
